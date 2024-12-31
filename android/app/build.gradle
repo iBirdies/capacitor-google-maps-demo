@@ -1,14 +1,24 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+import java.util.Properties
+
+def loadEnvProperties() {
+    def props = new Properties()
+    file(rootProject.file("../.env")).withReader { reader -> props.load(reader) }
+    return props
+}
+
+def env = loadEnvProperties()
+
 android {
     kotlinOptions {
         jvmTarget = '17'
     }
-    namespace "io.ionic.starter"
+    namespace "com.ibirdies.demogooglemaps"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "io.ionic.starter"
+        applicationId "com.ibirdies.demogooglemaps"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -19,6 +29,9 @@ android {
              // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
+        manifestPlaceholders = [
+                GOOGLE_MAPS_API_KEY: env['VITE_GOOGLE_MAPS_ANDROID_API_KEY'] ?: ""
+        ]
     }
     buildTypes {
         release {
