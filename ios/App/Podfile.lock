@@ -29,7 +29,7 @@ DEPENDENCIES:
   - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorGeolocation (from `../../node_modules/@capacitor/geolocation`)"
-  - "CapacitorGoogleMaps (from `../../node_modules/@capacitor/google-maps`)"
+  - CapacitorGoogleMaps (from `../../capacitor-google-maps/plugin`)
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
@@ -49,7 +49,7 @@ EXTERNAL SOURCES:
   CapacitorGeolocation:
     :path: "../../node_modules/@capacitor/geolocation"
   CapacitorGoogleMaps:
-    :path: "../../node_modules/@capacitor/google-maps"
+    :path: "../../capacitor-google-maps/plugin"
   CapacitorHaptics:
     :path: "../../node_modules/@capacitor/haptics"
   CapacitorKeyboard:
@@ -69,6 +69,6 @@ SPEC CHECKSUMS:
   Google-Maps-iOS-Utils: 66d6de12be1ce6d3742a54661e7a79cb317a9321
   GoogleMaps: 8939898920281c649150e0af74aa291c60f2e77d
 
-PODFILE CHECKSUM: 782ab83484ac86cbd58bd8672cc0d4b19b1672cf
+PODFILE CHECKSUM: 3e097d8fb62d1f7a9260a9fee3801c4742b2f89f
 
 COCOAPODS: 1.15.2
