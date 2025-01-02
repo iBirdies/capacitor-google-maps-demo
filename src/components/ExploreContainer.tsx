@@ -47,6 +47,11 @@ const ExploreContainer: React.FC = () => {
       },
       zoom: 15
     });
+    await map.addTileOverlay({
+      getTile: (x, y, zoom) => {
+        return `https://a.basemaps.cartocdn.com/light_all/${zoom}/${x}/${y}.png`;
+      }
+    });
   };
 
   useEffect(() => {
