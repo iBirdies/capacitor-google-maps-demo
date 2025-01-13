@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build-plugin": "pnpm --filter './capacitor-google-maps' run build",
+    "clean-submodules": "git submodule update --init --recursive --force",
+    "build-plugin": "pnpm --filter './capacitor-google-maps' run build && pnpm run clean-submodules",
     "build": "tsc && ionic build",
     "run:web": "ionic serve",
     "run:ios": "ionic cap sync && ionic cap run ios -l --external",
