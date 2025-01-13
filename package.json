@@ -4,11 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "install-npm-deps-cgm": "npm install --prefix ./capacitor-google-maps",
-    "install-pod-deps-cgm": "pod install --project-directory=./capacitor-google-maps/plugin/ios",
-    "install-deps-cgm": "npm run install-npm-deps-cgm && npm run install-pod-deps-cgm",
-    "build-cgm": "npm run install-deps-cgm && npm --prefix ./capacitor-google-maps/plugin run build",
-    "start": "npm install && npm run build-cgm",
+    "build-plugin": "pnpm --filter './capacitor-google-maps' run build",
     "build": "tsc && ionic build",
     "run:web": "ionic serve",
     "run:ios": "ionic cap sync && ionic cap run ios -l --external",
@@ -46,6 +42,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^29.5.14",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-legacy": "^5.0.0",
@@ -61,6 +58,11 @@
   },
   "description": "An Ionic project",
   "engines": {
-    "node": ">=20"
-  }
+    "node": ">=20",
+    "pnpm": ">=8"
+  },
+  "workspaces": [
+    "capacitor-google-maps",
+    "capacitor-google-maps/*"
+  ]
 }

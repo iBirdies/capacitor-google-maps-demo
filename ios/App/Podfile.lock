@@ -25,14 +25,14 @@ PODS:
     - GoogleMaps/Base
 
 DEPENDENCIES:
-  - "Capacitor (from `../../node_modules/@capacitor/ios`)"
-  - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
-  - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
-  - "CapacitorGeolocation (from `../../node_modules/@capacitor/geolocation`)"
+  - "Capacitor (from `../../node_modules/.pnpm/@capacitor+ios@6.2.0_@capacitor+core@6.2.0/node_modules/@capacitor/ios`)"
+  - "CapacitorApp (from `../../node_modules/.pnpm/@capacitor+app@6.0.2_@capacitor+core@6.2.0/node_modules/@capacitor/app`)"
+  - "CapacitorCordova (from `../../node_modules/.pnpm/@capacitor+ios@6.2.0_@capacitor+core@6.2.0/node_modules/@capacitor/ios`)"
+  - "CapacitorGeolocation (from `../../node_modules/.pnpm/@capacitor+geolocation@6.1.0_@capacitor+core@6.2.0/node_modules/@capacitor/geolocation`)"
   - CapacitorGoogleMaps (from `../../capacitor-google-maps/plugin`)
-  - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
-  - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
-  - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
+  - "CapacitorHaptics (from `../../node_modules/.pnpm/@capacitor+haptics@6.0.2_@capacitor+core@6.2.0/node_modules/@capacitor/haptics`)"
+  - "CapacitorKeyboard (from `../../node_modules/.pnpm/@capacitor+keyboard@6.0.3_@capacitor+core@6.2.0/node_modules/@capacitor/keyboard`)"
+  - "CapacitorStatusBar (from `../../node_modules/.pnpm/@capacitor+status-bar@6.0.2_@capacitor+core@6.2.0/node_modules/@capacitor/status-bar`)"
 
 SPEC REPOS:
   trunk:
@@ -41,21 +41,21 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   Capacitor:
-    :path: "../../node_modules/@capacitor/ios"
+    :path: "../../node_modules/.pnpm/@capacitor+ios@6.2.0_@capacitor+core@6.2.0/node_modules/@capacitor/ios"
   CapacitorApp:
-    :path: "../../node_modules/@capacitor/app"
+    :path: "../../node_modules/.pnpm/@capacitor+app@6.0.2_@capacitor+core@6.2.0/node_modules/@capacitor/app"
   CapacitorCordova:
-    :path: "../../node_modules/@capacitor/ios"
+    :path: "../../node_modules/.pnpm/@capacitor+ios@6.2.0_@capacitor+core@6.2.0/node_modules/@capacitor/ios"
   CapacitorGeolocation:
-    :path: "../../node_modules/@capacitor/geolocation"
+    :path: "../../node_modules/.pnpm/@capacitor+geolocation@6.1.0_@capacitor+core@6.2.0/node_modules/@capacitor/geolocation"
   CapacitorGoogleMaps:
     :path: "../../capacitor-google-maps/plugin"
   CapacitorHaptics:
-    :path: "../../node_modules/@capacitor/haptics"
+    :path: "../../node_modules/.pnpm/@capacitor+haptics@6.0.2_@capacitor+core@6.2.0/node_modules/@capacitor/haptics"
   CapacitorKeyboard:
-    :path: "../../node_modules/@capacitor/keyboard"
+    :path: "../../node_modules/.pnpm/@capacitor+keyboard@6.0.3_@capacitor+core@6.2.0/node_modules/@capacitor/keyboard"
   CapacitorStatusBar:
-    :path: "../../node_modules/@capacitor/status-bar"
+    :path: "../../node_modules/.pnpm/@capacitor+status-bar@6.0.2_@capacitor+core@6.2.0/node_modules/@capacitor/status-bar"
 
 SPEC CHECKSUMS:
   Capacitor: 1f3c7b9802d958cd8c4eb63895fff85dff2e1eea
@@ -69,6 +69,6 @@ SPEC CHECKSUMS:
   Google-Maps-iOS-Utils: 66d6de12be1ce6d3742a54661e7a79cb317a9321
   GoogleMaps: 8939898920281c649150e0af74aa291c60f2e77d
 
-PODFILE CHECKSUM: 3e097d8fb62d1f7a9260a9fee3801c4742b2f89f
+PODFILE CHECKSUM: 8b7641cd61cac6aec63bf6f252866cae29082aba
 
 COCOAPODS: 1.15.2
