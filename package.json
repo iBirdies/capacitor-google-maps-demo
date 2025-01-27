@@ -4,8 +4,6 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "clean-submodules": "git submodule update --init --recursive --force",
-    "build-plugin": "pnpm --filter './capacitor-google-maps' run build && pnpm run clean-submodules",
     "build": "tsc && ionic build",
     "run:web": "ionic serve",
     "run:ios": "ionic cap sync && ionic cap run ios -l --external",
@@ -22,7 +20,7 @@
     "@capacitor/app": "6.0.2",
     "@capacitor/core": "6.2.0",
     "@capacitor/geolocation": "^6.1.0",
-    "@capacitor/google-maps": "file:./capacitor-google-maps/plugin",
+    "@capacitor/google-maps": "file:capacitor-google-maps-e5bd330.tgz",
     "@capacitor/haptics": "6.0.2",
     "@capacitor/ios": "6.2.0",
     "@capacitor/keyboard": "6.0.3",
@@ -59,11 +57,6 @@
   },
   "description": "An Ionic project",
   "engines": {
-    "node": ">=20",
-    "pnpm": ">=8"
-  },
-  "workspaces": [
-    "capacitor-google-maps",
-    "capacitor-google-maps/*"
-  ]
+    "node": ">=20"
+  }
 }
