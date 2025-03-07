@@ -24,15 +24,34 @@ const ExploreContainer: React.FC = () => {
             apiKey = import.meta.env.VITE_GOOGLE_MAPS_WEB_API_KEY;
           }
 
+          const paris = {
+            lat: 48.8575,
+            lng: 2.3514
+          };
+
+          const allowedBoundsDistance = 0.005; // 500 meters
+
           map = await GoogleMap.create({
             id: 'main-map',
             apiKey: apiKey,
             config: {
-              center: {
-                lat: 0,
-                lng: 0
+              center: paris,
+              zoom: 17,
+              zoomControl: true,
+              disableDefaultUI: true,
+              minZoom: 15,
+              maxZoom: 18,
+              mapTypeId: "satellite",
+              restriction: {
+                latLngBounds: {
+                  north: paris.lat + allowedBoundsDistance,
+                  south: paris.lat - allowedBoundsDistance,
+                  west: paris.lng - allowedBoundsDistance,
+                  east: paris.lng + allowedBoundsDistance
+                }
               },
-              zoom: 5
+              heading: 90,
+              mapId: import.meta.env.VITE_GOOGLE_MAPS_MAP_ID
             },
             element: mapRef.current
           });
@@ -43,49 +62,6 @@ const ExploreContainer: React.FC = () => {
         console.error(error);
         setState('error');
       }
-    };
-
-    const enableCurrentLocation = async (map: GoogleMap) => {
-      await map.enableCurrentLocation(true);
-      const currentLocation = await Geolocation.getCurrentPosition();
-      await map.setCamera({
-        coordinate: {
-          lat: currentLocation.coords.latitude,
-          lng: currentLocation.coords.longitude
-        },
-        zoom: 15
-      });
-    };
-
-    const resolvePermissionStatus = async (): Promise<void> => {
-      if (!isPlatform('mobile')) {
-        return;
-      }
-
-      const currentPermissionStatus = await Geolocation.checkPermissions();
-
-      switch (currentPermissionStatus.location) {
-        case 'prompt':
-        case 'prompt-with-rationale':
-          const status = await Geolocation.requestPermissions({permissions: ['location']});
-          
-          if (status.location !== 'granted') {
-            throw new Error('Location permission not granted');
-          }
-
-          return;
-
-        case 'denied':
-          return;
-
-        case 'granted':
-          return;
-      }
-    };
-
-    const permissionsTask = async () => {
-      await resolvePermissionStatus();
-      await enableCurrentLocation(map);
     };
     
     const tileOverlayTask = async () => {
@@ -98,7 +74,7 @@ const ExploreContainer: React.FC = () => {
 
     (async () => {
       await createMap();      
-      await Promise.allSettled([tileOverlayTask(), permissionsTask()]);
+      await Promise.allSettled([tileOverlayTask()]);
     })();
   }, []);
 
