@@ -13,7 +13,7 @@ def env = loadEnvProperties()
 
 android {
     kotlinOptions {
-        jvmTarget = '17'
+        jvmTarget = '21'
     }
     namespace "com.ibirdies.demogooglemaps"
     compileSdk rootProject.ext.compileSdkVersion

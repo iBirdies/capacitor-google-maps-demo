@@ -10,7 +10,7 @@ const ExploreContainer: React.FC = () => {
   let map: GoogleMap;
 
   useEffect(() => {
-    const createMap = async () => {
+    const setup = async () => {
       try {
         await new Promise(resolve => setTimeout(resolve, 1000));
         
@@ -33,11 +33,11 @@ const ExploreContainer: React.FC = () => {
 
           map = await GoogleMap.create({
             id: 'main-map',
+            element: mapRef.current,
             apiKey: apiKey,
             config: {
               center: paris,
               zoom: 17,
-              zoomControl: true,
               disableDefaultUI: true,
               minZoom: 15,
               maxZoom: 18,
@@ -51,36 +51,27 @@ const ExploreContainer: React.FC = () => {
                 }
               },
               heading: 90,
-              mapId: import.meta.env.VITE_GOOGLE_MAPS_MAP_ID
-            },
-            element: mapRef.current
+              mapId: import.meta.env.VITE_GOOGLE_MAPS_MAP_ID,
+              styles: [{ featureType: "all", elementType: "labels", stylers: [{ visibility: "off" }] }],
+            }
           });
         }
 
         setState('loaded');
+
+        await map.addTileOverlay({ url: `https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png`, zIndex: -1000 });
       } catch (error) {
         console.error(error);
         setState('error');
       }
     };
-    
-    const tileOverlayTask = async () => {
-      await map.addTileOverlay({
-        getTile: (x, y, zoom) => {
-          return `https://a.basemaps.cartocdn.com/light_all/${zoom}/${x}/${y}.png`;
-        }
-      })
-    };
 
-    (async () => {
-      await createMap();      
-      await Promise.allSettled([tileOverlayTask()]);
-    })();
+    setup();
   }, []);
 
   return (
     <div id="container">
-      <capacitor-google-map ref={mapRef} id="map" />
+      <capacitor-google-map ref={mapRef} id="map"></capacitor-google-map>
 
       {state === 'loading' && (
         <div id="info-container">
