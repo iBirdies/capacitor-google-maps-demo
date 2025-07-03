@@ -1,6 +1,6 @@
 # Demo Google Maps
 
-This demo app makes use of [our custom fork of the Capacitor plugin for Google Maps](https://github.com/LaravelFreelancerNL/capacitor-google-maps) to show a map with a tile overlay and the user's current location.
+This demo app makes use of [our custom fork of the Capacitor plugin for Google Maps](https://github.com/iBirdies/capacitor-google-maps) to show a map with a tile overlay.
 
 ## Getting Started
 
@@ -16,7 +16,7 @@ This demo app makes use of [our custom fork of the Capacitor plugin for Google M
 
 ```bash
 # Clone
-git clone --recursive https://github.com/LaravelFreelancerNL/capacitor-google-maps-demo.git
+git clone https://github.com/iBirdies/capacitor-google-maps-demo.git
 
 # Setup dotenv
 cd capacitor-google-maps-demo
@@ -30,17 +30,17 @@ npm run build
 ```
 
 ### Running
-
 ```bash
+# Web
 npm run run:web
+
+# iOS
 npm run run:ios
-npm run run:android
-```
-
-### Helpful scripts
-
-```bash
-# Open native projects
+# Or open in Xcode
 npm run open:ios
+
+# Android
+npm run run:android
+# Or open in Android Studio
 npm run open:android
 ```
