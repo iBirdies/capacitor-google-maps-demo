@@ -1,20 +1,45 @@
 import './ExploreContainer.css';
 import { Geolocation } from '@capacitor/geolocation';
 import { GoogleMap } from '@capacitor/google-maps';
-import { useRef, useEffect, memo, useState } from 'react';
+import { useRef, useEffect, memo, useState, useCallback } from 'react';
 import { isPlatform, IonSpinner } from '@ionic/react';
 
 const ExploreContainer: React.FC = () => {
   const [state, setState] = useState<'loading' | 'loaded' | 'error'>('loading');
-  const mapRef = useRef<HTMLElement>();
-  let map: GoogleMap;
+  const mapRef = useRef<HTMLElement | null>(null);
+  const map = useRef<GoogleMap | null>(null);
+
+  const [tileOverlayId, setTileOverlayId] = useState<string | null>(null);
+
+  const toggleTileOverlay = useCallback(async () => {
+    if (!map.current) {
+      console.error('[toggleTileOverlay] Map not initialized');
+      return;
+    }
+
+    if (tileOverlayId) {
+      try {
+        await map.current.removeTileOverlay(tileOverlayId);
+        setTileOverlayId(null);
+      } catch (error) {
+        console.error('[toggleTileOverlay] Error removing tile overlay', error);
+      }
+    } else {
+      try {
+        const tileOverlayId = await map.current.addTileOverlay({ url: `https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png`, zIndex: -1000 });
+        setTileOverlayId(tileOverlayId);
+      } catch (error) {
+        console.error('[toggleTileOverlay] Error adding tile overlay', error);
+      }
+    }
+  }, [tileOverlayId]);
 
   useEffect(() => {
     const setup = async () => {
       try {
         await new Promise(resolve => setTimeout(resolve, 1000));
         
-        if (mapRef.current) {
+        if (mapRef.current && !map.current) {
           let apiKey: string;
           if (isPlatform("ios")) {
             apiKey = import.meta.env.VITE_GOOGLE_MAPS_IOS_API_KEY;
@@ -31,7 +56,7 @@ const ExploreContainer: React.FC = () => {
 
           const allowedBoundsDistance = 0.005; // 500 meters
 
-          map = await GoogleMap.create({
+          map.current = await GoogleMap.create({
             id: 'main-map',
             element: mapRef.current,
             apiKey: apiKey,
@@ -58,8 +83,6 @@ const ExploreContainer: React.FC = () => {
         }
 
         setState('loaded');
-
-        await map.addTileOverlay({ url: `https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png`, zIndex: -1000 });
       } catch (error) {
         console.error(error);
         setState('error');
@@ -82,6 +105,9 @@ const ExploreContainer: React.FC = () => {
         <div id="info-container">
           <p style={{ color: 'red' }}>Error</p>
         </div>
+      )}
+      {state === 'loaded' && (
+        <button id="toggle-button" onClick={toggleTileOverlay}>{tileOverlayId ? 'Remove Tile Overlay' : 'Add Tile Overlay'}</button>
       )}
     </div>
   );
